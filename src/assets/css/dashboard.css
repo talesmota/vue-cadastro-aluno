@@ -116,6 +116,7 @@ header{
     -ms-transition: all 1s ease;
     transition: all 1s ease;
   }
+  .table{    overflow: auto;}
   @media (max-width: 767px) {
     .nav-side-menu {
       position: relative;
@@ -141,11 +142,17 @@ header{
       padding-left: 20px;
       line-height: 50px !important;
     }
+    .content{
+      margin-top: 150px;
+      margin-left: 0!important;
+    }
+   
   }
   @media (min-width: 767px) {
     .nav-side-menu .menu-list .menu-content {
       display: block;
     }
+    
   }
   body {
     margin: 0px;
@@ -155,4 +162,6 @@ header{
   @media (width: 600px) {
     header{display: none}
     .nav-side-menu{top:0}
+    
   }
+

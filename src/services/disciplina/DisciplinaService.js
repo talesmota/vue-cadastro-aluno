@@ -1,7 +1,7 @@
-export default class AlunoService{
+export default class DisciplinaService{
     constructor(resource){
-        
-        this._resource = resource('aluno{/id}');
+        this.resource = resource;
+        this._resource = resource('disciplina{/id}');
     }
     lista(){
         return this._resource
@@ -41,6 +41,16 @@ export default class AlunoService{
     }
     busca(id){
         return this._resource.get({id}).then(
+            res=>res.json(),
+            err=>{
+                    console.log(err);
+                    throw new Error('Não foi possível buscar a foto');
+                }
+        );
+    }
+    getAlunos(id){
+        let resource = this.resource(`disciplina/${id}/alunos`)
+        return resource.query().then(
             res=>res.json(),
             err=>{
                     console.log(err);

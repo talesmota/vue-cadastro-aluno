@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="table-responsive">
       <h1>Listar Alunos</h1>
       <table class="table">
         <thead>
@@ -10,17 +10,19 @@
         </thead> 
         <tbody>
           <tr v-for="(aluno, index) in alunos" :key="aluno.id">
-            <td>{{ ++index }}</td>
-            <td>{{ aluno.name }}</td>
-            <td>{{ aluno.email }}</td>
+            
+            <td><router-link :to="{name:'ver-aluno', params:{id:aluno.id}}">{{ ++index }}</router-link></td>
+            <td><router-link :to="{name:'ver-aluno', params:{id:aluno.id}}">{{ aluno.name }}</router-link></td>
+            <td><router-link :to="{name:'ver-aluno', params:{id:aluno.id}}">{{ aluno.email }}</router-link></td>
             <td>
-              <router-link to="" class="table-action">
+              <router-link :to="{name:'ver-aluno', params:{id:aluno.id}}" class="table-action">
                 <i class="fa fa-pencil" aria-hidden="true"></i>
               </router-link>
-              <router-link to="">
+              <a href="#" @click="remover(aluno)">
                 <i class="fa fa-trash" aria-hidden="true"></i>
-              </router-link>
+              </a>
             </td>
+            
           </tr>
         </tbody>
       </table>
@@ -42,6 +44,20 @@ export default {
         alunos=>this.alunos=alunos,
         err=>{}
       )
+  },
+  methods:{
+    remover(aluno){
+      this.service = new AlunoService(this.$resource);
+    this.service
+      .apaga(aluno.id)
+      .then(
+        alunos=>{
+        let index = this.alunos.indexOf(aluno);
+        this.alunos.splice(index,1);
+        },
+        err=>{}
+      )
+    }
   }
 }
 </script>

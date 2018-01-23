@@ -17,6 +17,15 @@ import './assets/css/dashboard.css';
 
 Vue.use(VueResource); //habilitando o resource para usar $http e $resource
 Vue.http.options.root="http://localhost:8100";
+Vue.http.interceptors.push((req, next) => {
+
+  // é possível colocar informações no header antes do envio da requisição
+  req.headers.set('Content-type', 'application/json');
+
+  next(res => {
+  });
+
+});
 Vue.use(VueRouter); //habilitando a rota
 
 const router = new VueRouter({

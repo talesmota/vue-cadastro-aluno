@@ -3,7 +3,8 @@
     <!-- <nti-header></nti-header> -->
     <nti-body>
       <nti-menu slot="menu"></nti-menu>
-      <router-view slot="content"></router-view>
+      
+        <router-view slot="content"></router-view>
     </nti-body>
     <!-- <nti-footer></nti-footer> -->
   </div>
@@ -22,6 +23,6 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style>
 
 </style>
